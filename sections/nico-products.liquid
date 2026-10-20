@@ -1,0 +1,93 @@
+<section id="produkty" class="section products-section" aria-labelledby="ProductsHeading-{{ section.id }}">
+  <div class="container">
+    <div class="section-heading centered" data-reveal>
+      <div class="eyebrow"><span class="eyebrow-line"></span>{{ section.settings.eyebrow | escape }}</div>
+      <h2 id="ProductsHeading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <p>{{ section.settings.description | escape | newline_to_br }}</p>
+    </div>
+    <div class="products-grid" data-reveal>
+      {% for block in section.blocks %}
+        {% liquid
+          assign offer = block.settings.product
+          assign offer_name = block.settings.display_name | default: offer.title | default: 'Oferta'
+          assign benefits = block.settings.benefits | newline_to_br | split: '<br />'
+        %}
+        <article class="product-card{% if block.settings.featured %} featured-product{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.featured %}<span class="product-badge">{% render 'icon', name: 'stars' %} {{ block.settings.badge | escape }}</span>{% endif %}
+          <span class="product-icon">{% render 'icon', name: block.settings.icon %}</span>
+          <div class="product-category">{{ block.settings.category | escape }}</div>
+          <h3>{{ offer_name | escape }}</h3>
+          <p class="product-description">{{ block.settings.description | escape }}</p>
+          {% if offer != blank %}
+            <div class="product-price commerce-offer-price">
+              {% if offer.price_varies %}<span class="commerce-price-prefix">Od</span>{% endif %}
+              <strong>{{ offer.price | money_with_currency }}</strong>
+            </div>
+            <p class="commerce-price-note">
+              {% if offer.selling_plan_groups.size > 0 %}Dostępne warianty i plany zakupu na stronie produktu.{% else %}Płatność jednorazowa{% endif %}
+            </p>
+            {% if offer.available %}
+              <a href="{{ offer.url }}" class="button {% if block.settings.featured %}button-primary{% else %}button-outline{% endif %}">{{ block.settings.cta | escape }} {% render 'icon', name: 'arrow-up-right' %}</a>
+            {% else %}
+              <button type="button" class="button button-outline" disabled>Wyprzedane</button>
+            {% endif %}
+          {% else %}
+            <div class="product-price commerce-offer-price"><span class="commerce-offer-pending">Oferta w przygotowaniu</span></div>
+            <button type="button" class="button button-outline" disabled>Wkrótce w ofercie</button>
+            {% if request.design_mode %}<p class="commerce-editor-note">Edytor: przypisz rzeczywisty produkt Shopify do tego bloku, aby pokazać cenę i włączyć zakup.</p>{% endif %}
+          {% endif %}
+          <div class="product-benefits-heading">W ŚRODKU ZNAJDZIESZ</div>
+          <ul class="benefit-list">
+            {% for benefit in benefits %}
+              {% assign benefit_text = benefit | strip %}
+              {% if benefit_text != blank %}<li>{% render 'icon', name: 'check' %}{{ benefit_text | escape }}</li>{% endif %}
+            {% endfor %}
+          </ul>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="products-footnote"><span>{% render 'icon', name: 'check' %} Rzeczywiste produkty</span><span>{% render 'icon', name: 'check' %} Płatność w kasie Shopify</span><span>{% render 'icon', name: 'check' %} Jasne warunki przed zakupem</span></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produkty i oferta",
+  "tag": "section",
+  "class": "shopify-products-section",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Mały nagłówek", "default": "MNIEJ CHAOSU. WIĘCEJ KIERUNKU." },
+    { "type": "text", "id": "heading", "label": "Nagłówek", "default": "Wybierz swoją ścieżkę." },
+    { "type": "textarea", "id": "description", "label": "Opis", "default": "Zacznij od tego, czego potrzebujesz najbardziej.\nSpołeczność, kurs lub oba rozwiązania — po Twojemu." }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "Oferta",
+      "limit": 3,
+      "settings": [
+        { "type": "product", "id": "product", "label": "Produkt Shopify" },
+        { "type": "text", "id": "display_name", "label": "Nazwa na karcie", "default": "Oferta" },
+        { "type": "text", "id": "category", "label": "Kategoria", "default": "TWOJA ŚCIEŻKA" },
+        { "type": "select", "id": "icon", "label": "Ikona", "default": "layers-3", "options": [{ "value": "users", "label": "Społeczność" }, { "value": "play", "label": "Kurs" }, { "value": "layers-3", "label": "Pakiet" }] },
+        { "type": "textarea", "id": "description", "label": "Opis", "default": "Wybierz rozwiązanie dopasowane do swojego etapu." },
+        { "type": "textarea", "id": "benefits", "label": "Korzyści (każda w nowej linii)", "default": "Praktyczna wiedza\nKierunek do działania" },
+        { "type": "text", "id": "cta", "label": "Tekst przycisku", "default": "Zobacz produkt" },
+        { "type": "checkbox", "id": "featured", "label": "Wyróżnij kartę", "default": false },
+        { "type": "text", "id": "badge", "label": "Etykieta wyróżnienia", "default": "NAJLEPSZA WARTOŚĆ" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Produkty i oferta",
+      "blocks": [
+        { "type": "offer", "settings": { "display_name": "Community", "category": "WSPÓLNY KIERUNEK", "icon": "users", "description": "Miejsce dla osób, które chcą rozwijać swój biznes online, wymieniać się doświadczeniami i pracować nad swoimi pomysłami.", "benefits": "Dostęp do społeczności\nMożliwość wymiany doświadczeń\nPrzestrzeń do rozwijania własnych projektów\nKontakt z osobami o podobnych celach", "cta": "Dołącz do społeczności" } },
+        { "type": "offer", "settings": { "display_name": "Kurs", "category": "WIEDZA W PRAKTYCE", "icon": "play", "description": "Praktyczna wiedza, która pomoże Ci lepiej zrozumieć content, sprzedaż internetową i budowanie biznesu.", "benefits": "Materiały edukacyjne\nWiedza o tworzeniu contentu\nPodstawy sprzedaży produktów cyfrowych\nPraktyczne wskazówki do wykorzystania we własnym projekcie", "cta": "Kup kurs" } },
+        { "type": "offer", "settings": { "display_name": "Full Access", "category": "PEŁNY EKOSYSTEM", "icon": "layers-3", "description": "Połącz wiedzę z możliwością rozwijania się w społeczności.", "benefits": "Wszystkie elementy kursu\nDostęp do społeczności\nJedno miejsce do nauki i rozwijania własnego projektu", "cta": "Wybieram pakiet", "featured": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

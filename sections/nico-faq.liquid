@@ -1,0 +1,143 @@
+{%- liquid
+  assign consultation_url = settings.booking_url
+  if consultation_url == blank
+    assign consultation_url = settings.contact_page.url
+  endif
+  if consultation_url == blank
+    assign consultation_url = routes.root_url | append: 'pages/kontakt'
+  endif
+-%}
+<section id="faq" class="section faq-section" aria-labelledby="FaqTitle-{{ section.id }}">
+  <div class="container faq-grid">
+    <div class="faq-heading" data-reveal>
+      <p class="eyebrow"><span class="section-number">06 /</span>{{ section.settings.eyebrow | escape }}</p>
+      <h2 id="FaqTitle-{{ section.id }}">{{ section.settings.title_first | escape }}<br><span class="muted-heading">{{ section.settings.title_second | escape }}</span></h2>
+      <p>{{ section.settings.description | escape | newline_to_br }}</p>
+      <a class="text-link" href="{{ consultation_url | escape }}">{{ section.settings.cta_label | escape }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg></a>
+    </div>
+    <div class="faq-list" data-reveal>
+      {%- for block in section.blocks -%}
+        <details class="faq-item" name="FaqGroup-{{ section.id }}"{% if forloop.first and section.settings.open_first %} open{% endif %} {{ block.shopify_attributes }}>
+          <summary id="FaqQuestion-{{ section.id }}-{{ block.id }}"><span>{{ block.settings.question | escape }}</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></summary>
+          <div class="faq-answer" role="region" aria-labelledby="FaqQuestion-{{ section.id }}-{{ block.id }}">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NICO — FAQ",
+  "tag": "div",
+  "class": "nico-faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Nadtytuł",
+      "default": "DOBRZE WIEDZIEĆ"
+    },
+    {
+      "type": "text",
+      "id": "title_first",
+      "label": "Nagłówek — pierwszy wiersz",
+      "default": "Masz pytania?"
+    },
+    {
+      "type": "text",
+      "id": "title_second",
+      "label": "Nagłówek — drugi wiersz",
+      "default": "Zacznij tutaj."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Opis",
+      "default": "Ważne decyzje łatwiej podejmować,\ngdy wszystko jest jasne."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Tekst przycisku kontaktu",
+      "default": "Porozmawiajmy"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Otwórz pierwszą odpowiedź",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pytanie i odpowiedź",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pytanie",
+          "default": "Twoje pytanie"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Odpowiedź",
+          "default": "<p>Twoja odpowiedź.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "NICO — FAQ",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Dla kogo jest ta oferta?",
+            "answer": "<p>Dla osób, które chcą rozpocząć lub rozwijać biznes internetowy i nauczyć się tworzenia contentu oraz sprzedaży. Niezależnie od tego, czy masz już pomysł, czy dopiero szukasz kierunku.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Czy muszę mieć już własny biznes?",
+            "answer": "<p>Nie. Możesz rozpocząć od pomysłu i stopniowo rozwijać swój projekt. Wybierz ścieżkę dopasowaną do tego, na jakim etapie jesteś.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Czym różni się kurs od społeczności?",
+            "answer": "<p>Kurs zapewnia materiały edukacyjne, a społeczność daje przestrzeń do wymiany doświadczeń i rozwijania projektów. Pakiet Full Access łączy oba rozwiązania.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Czy mogę najpierw porozmawiać?",
+            "answer": "<p>Tak. Pierwsza konsultacja coachingowa jest darmowa i pozwala omówić Twoją sytuację oraz oczekiwania. Dostępność zapisów sprawdzisz po kliknięciu przycisku konsultacji.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Czy osiągnę określony wynik finansowy?",
+            "answer": "<p>Wyniki zależą od wielu czynników, w tym Twoich działań, oferty i sytuacji rynkowej. Nie gwarantuję określonych zarobków. Dostajesz wiedzę i kierunek, a nie obietnicę wyniku.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Jak otrzymam dostęp do produktu?",
+            "answer": "<p>Sposób i czas uzyskania dostępu poznasz przed dokonaniem rzeczywistego zakupu. Instrukcje zostaną przekazane po potwierdzeniu płatności. Jeśli sprzedaż produktu nie została jeszcze uruchomiona, jego przycisk wyświetli tę informację.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

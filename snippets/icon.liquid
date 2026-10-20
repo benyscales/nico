@@ -1,0 +1,71 @@
+{%- comment -%} Decorative Lucide icons (ISC and MIT). Full licenses are included in assets/nico.css. {%- endcomment -%}
+<svg xmlns="http://www.w3.org/2000/svg" width="{{ size | default: 20 }}" height="{{ size | default: 20 }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon {{ class | escape }}">
+  {%- case name -%}
+    {%- when 'arrow-down' -%}
+      <path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path>
+    {%- when 'arrow-down-right' -%}
+      <path d="m7 7 10 10"></path><path d="M17 7v10H7"></path>
+    {%- when 'arrow-right' -%}
+      <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+    {%- when 'arrow-up-right' -%}
+      <path d="M7 7h10v10"></path><path d="M7 17 17 7"></path>
+    {%- when 'audio-lines' -%}
+      <path d="M2 10v3"></path><path d="M6 6v11"></path><path d="M10 3v18"></path><path d="M14 8v7"></path><path d="M18 5v13"></path><path d="M22 10v3"></path>
+    {%- when 'check' -%}
+      <path d="M20 6 9 17l-5-5"></path>
+    {%- when 'check-circle' -%}
+      <circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/>
+    {%- when 'chevron-right' -%}
+      <path d="m9 18 6-6-6-6"></path>
+    {%- when 'circle-alert' -%}
+      <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+    {%- when 'compass' -%}
+      <circle cx="12" cy="12" r="10"></circle><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
+    {%- when 'layers-3' -%}
+      <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path>
+    {%- when 'lightbulb' -%}
+      <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path>
+    {%- when 'lock' -%}
+      <rect x="4" y="11" width="16" height="11" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+    {%- when 'menu' -%}
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    {%- when 'message-circle' -%}
+      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+    {%- when 'minus' -%}
+      <path d="M5 12h14"/>
+    {%- when 'mouse-pointer-2' -%}
+      <path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"></path>
+    {%- when 'move-up-right' -%}
+      <path d="M13 5H19V11"></path><path d="M19 5L5 19"></path>
+    {%- when 'play' -%}
+      <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path>
+    {%- when 'play-circle' -%}
+      <path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"></path><circle cx="12" cy="12" r="10"></circle>
+    {%- when 'plus' -%}
+      <path d="M5 12h14M12 5v14"/>
+    {%- when 'rocket' -%}
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"></path><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"></path>
+    {%- when 'route' -%}
+      <circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle>
+    {%- when 'search' -%}
+      <circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/>
+    {%- when 'shopping-bag' -%}
+      <path d="m6 2-3 4v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/>
+    {%- when 'stars' -%}
+      <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle>
+    {%- when 'target' -%}
+      <circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>
+    {%- when 'trash-2' -%}
+      <path d="M3 6h18M10 11v6M14 11v6M5 6l1 14h12l1-14M9 6V3h6v3"/>
+    {%- when 'trending-up' -%}
+      <path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path>
+    {%- when 'users' -%}
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle>
+    {%- when 'video' -%}
+      <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect>
+    {%- when 'x' -%}
+      <path d="m6 6 12 12M6 18 18 6"/>
+    {%- else -%}
+      <path d="M7 17 17 7M7 7h10v10"/>
+  {%- endcase -%}
+</svg>

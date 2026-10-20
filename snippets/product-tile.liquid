@@ -1,0 +1,30 @@
+{% comment %}Parameters: card_product (real product), heading_tag (h2 or h3).{% endcomment %}
+{% if card_product != blank %}
+  {% liquid
+    assign card_heading = 'h2'
+    if heading_tag == 'h3'
+      assign card_heading = 'h3'
+    endif
+    assign image_alt = card_product.featured_image.alt | default: card_product.title
+  %}
+  <article class="commerce-product-tile">
+    <a href="{{ card_product.url }}" class="commerce-product-image" aria-label="Zobacz produkt: {{ card_product.title | escape }}">
+      {% if card_product.featured_image %}
+        {{ card_product.featured_image | image_url: width: 800 | image_tag: widths: '320,480,640,800', sizes: '(min-width: 990px) 30vw, (min-width: 600px) 45vw, 90vw', loading: 'lazy', alt: image_alt }}
+      {% else %}
+        <span class="commerce-image-placeholder" aria-hidden="true">{% render 'icon', name: 'layers-3' %}</span>
+      {% endif %}
+    </a>
+    <div class="commerce-product-tile-body">
+      <{{ card_heading }}><a href="{{ card_product.url }}">{{ card_product.title | escape }}</a></{{ card_heading }}>
+      {% if card_product.description != blank %}<p>{{ card_product.description | strip_html | truncate: 130 | escape }}</p>{% endif %}
+      <div class="commerce-card-price">
+        {% if card_product.price_varies %}<span>Od </span>{% endif %}
+        <strong>{{ card_product.price | money_with_currency }}</strong>
+        {% if card_product.compare_at_price > card_product.price and card_product.price_varies == false %}<s><span class="sr-only">Cena regularna: </span>{{ card_product.compare_at_price | money_with_currency }}</s>{% endif %}
+      </div>
+      {% unless card_product.available %}<span class="commerce-unavailable">Wyprzedane</span>{% endunless %}
+      <a href="{{ card_product.url }}" class="commerce-text-link">Zobacz szczegóły {% render 'icon', name: 'arrow-up-right' %}<span class="sr-only"> — {{ card_product.title | escape }}</span></a>
+    </div>
+  </article>
+{% endif %}

@@ -1,0 +1,6 @@
+{
+  "type": "header",
+  "name": "Nagłówek",
+  "sections": { "header": { "type": "header", "settings": {} } },
+  "order": ["header"]
+}

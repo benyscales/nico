@@ -1,0 +1,28 @@
+<section class="commerce-page commerce-collections-page" aria-labelledby="CollectionsTitle-{{ section.id }}">
+  <div class="container">
+    <div class="commerce-page-heading"><div class="eyebrow">TWOJE MOŻLIWOŚCI</div><h1 id="CollectionsTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h1></div>
+    {% paginate collections by section.settings.collections_per_page %}
+      {% if collections.size > 0 %}
+        <div class="commerce-collection-grid">
+          {% for collection in collections %}
+            {% liquid
+              assign collection_image = collection.image | default: collection.products.first.featured_image
+              assign image_alt = collection_image.alt | default: collection.title
+            %}
+            <article class="commerce-collection-tile">
+              <a href="{{ collection.url }}" class="commerce-product-image" aria-label="Otwórz kolekcję: {{ collection.title | escape }}">{% if collection_image %}{{ collection_image | image_url: width: 800 | image_tag: widths: '320,480,640,800', sizes: '(min-width: 990px) 30vw, (min-width: 600px) 45vw, 90vw', loading: 'lazy', alt: image_alt }}{% else %}<span class="commerce-image-placeholder" aria-hidden="true">{% render 'icon', name: 'layers-3' %}</span>{% endif %}</a>
+              <div class="commerce-product-tile-body"><h2><a href="{{ collection.url }}">{{ collection.title | escape }}</a></h2><p>Liczba produktów: {{ collection.all_products_count }}</p><a href="{{ collection.url }}" class="commerce-text-link">Zobacz kolekcję {% render 'icon', name: 'arrow-up-right' %}<span class="sr-only"> — {{ collection.title | escape }}</span></a></div>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}<div class="commerce-empty-state"><h2>Kolekcje pojawią się tutaj wkrótce.</h2><p>Możesz też sprawdzić wszystkie dostępne produkty.</p><a href="{{ routes.all_products_collection_url }}" class="button button-outline">Zobacz produkty</a></div>{% endif %}
+      {% if paginate.pages > 1 %}
+        <nav class="commerce-pagination" aria-label="Strony kolekcji"><ul>{% if paginate.previous %}<li><a href="{{ paginate.previous.url }}" aria-label="Poprzednia strona">←</a></li>{% endif %}{% for part in paginate.parts %}<li>{% if part.is_link %}<a href="{{ part.url }}" aria-label="Strona {{ part.title | escape }}">{{ part.title }}</a>{% else %}<span{% if part.title == paginate.current_page %} aria-current="page"{% endif %}>{{ part.title }}</span>{% endif %}</li>{% endfor %}{% if paginate.next %}<li><a href="{{ paginate.next.url }}" aria-label="Następna strona">→</a></li>{% endif %}</ul></nav>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Lista kolekcji", "settings": [{ "type": "text", "id": "heading", "label": "Nagłówek", "default": "Znajdź swoją ścieżkę." }, { "type": "range", "id": "collections_per_page", "label": "Kolekcji na stronie", "min": 4, "max": 48, "step": 4, "default": 12 }] }
+{% endschema %}

@@ -1,0 +1,383 @@
+<section class="hero" aria-labelledby="hero-title-{{ section.id }}">
+<div class="hero-glow">
+</div>
+<div class="container hero-layout">
+<div class="hero-copy">
+<div class="hero-badge">
+<span class="status-dot">
+</span> {{ section.settings.badge_one | escape }} <span class="badge-separator">·</span> {{ section.settings.badge_two | escape }} <span class="badge-separator">·</span> {{ section.settings.badge_three | escape }}</div>
+<h1 id="hero-title-{{ section.id }}">{{ section.settings.heading_one | escape }}<br>
+<span>{{ section.settings.heading_two | escape }}</span>
+<br>{{ section.settings.heading_three | escape }}<span class="heading-dot">.</span>
+</h1>
+<p class="hero-description">{{ section.settings.description | escape }}</p>
+<div class="hero-actions">
+<a class="button button-primary" href="{{ section.settings.primary_url | default: '#produkty' | escape }}">{{ section.settings.primary_label | escape }} <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
+<path d="M7 7h10v10">
+</path>
+<path d="M7 17 17 7">
+</path>
+</svg>
+</a>
+<a class="button button-ghost" href="{{ section.settings.secondary_url | default: '#wyniki' | escape }}">{{ section.settings.secondary_label | escape }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</a>
+</div>
+<div class="hero-proof">
+<span>
+<strong>{{ section.settings.views_value | escape }}{{ section.settings.views_suffix | escape }}</strong> {{ section.settings.views_label | escape }}</span>
+<span class="proof-divider">
+</span>
+<span>
+<strong>{{ section.settings.sales_value | escape }}{{ section.settings.sales_suffix | escape }}</strong> {{ section.settings.sales_label | escape }}</span>
+</div>
+</div>
+<div class="hero-visual" role="img" aria-label="{{ section.settings.visual_label | escape }}">
+<div class="visual-grid">
+</div>
+<div class="visual-orbit orbit-one">
+</div>
+<div class="visual-orbit orbit-two">
+</div>
+<div class="visual-top-label">
+<span>
+</span> MAŁY POMYSŁ. DUŻE MOŻLIWOŚCI.</div>
+<div class="content-preview">
+<div class="preview-top">
+<span>
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play lucide-play-circle" aria-hidden="true">
+<path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z">
+</path>
+<circle cx="12" cy="12" r="10">
+</circle>
+</svg> TWÓJ CONTENT</span>
+<span>01</span>
+</div>
+<div class="preview-art">
+<div class="art-ring ring-one">
+</div>
+<div class="art-ring ring-two">
+</div>
+<div class="art-ring ring-three">
+</div>
+<span class="art-star">
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles lucide-stars" aria-hidden="true">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z">
+</path>
+<path d="M20 2v4">
+</path>
+<path d="M22 4h-4">
+</path>
+<circle cx="4" cy="20" r="2">
+</circle>
+</svg>
+</span>
+<span class="art-title">Wszystko<br>zaczyna się<br>
+<strong>od pomysłu.</strong>
+</span>
+<span class="art-play">
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true">
+<path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z">
+</path>
+</svg>
+</span>
+</div>
+<div class="preview-bottom">
+<span class="preview-avatar">n.</span>
+<div>
+<strong>Twórz. Publikuj. Rozwijaj.</strong>
+<span>Twój pierwszy krok online</span>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines" aria-hidden="true">
+<path d="M2 10v3">
+</path>
+<path d="M6 6v11">
+</path>
+<path d="M10 3v18">
+</path>
+<path d="M14 8v7">
+</path>
+<path d="M18 5v13">
+</path>
+<path d="M22 10v3">
+</path>
+</svg>
+</div>
+</div>
+<div class="reach-card">
+<span class="reach-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-up-right" aria-hidden="true">
+<path d="M13 5H19V11">
+</path>
+<path d="M19 5L5 19">
+</path>
+</svg>
+</span>
+<div>
+<span>UWAGA, KTÓRA MA ZNACZENIE</span>
+<strong>{{ section.settings.views_value | escape }}<span>{{ section.settings.views_suffix | escape }}</span>
+</strong>
+<small>wyświetleń na platformach</small>
+</div>
+<svg viewBox="0 0 160 55" fill="none" aria-hidden="true">
+<path d="M1 48C16 48 14 35 27 37S40 51 49 32S60 33 74 26S90 41 100 18S120 24 131 12S146 17 159 2" stroke="#45A5FF" stroke-width="2">
+</path>
+<path d="M1 48C16 48 14 35 27 37S40 51 49 32S60 33 74 26S90 41 100 18S120 24 131 12S146 17 159 2V55H1Z" fill="url(#line-fill-{{ section.id }})">
+</path>
+<defs>
+<linearGradient id="line-fill-{{ section.id }}" x1="80" y1="0" x2="80" y2="55" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0A84FF" stop-opacity=".2">
+</stop>
+<stop offset="1" stop-color="#0A84FF" stop-opacity="0">
+</stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+<div class="flow-connector">
+<svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
+<path d="M5 4H100Q125 4 125 30V110Q125 135 150 135H235" stroke="#2978cb" stroke-opacity=".55" stroke-width="1" stroke-dasharray="4 5">
+</path>
+<circle cx="125" cy="75" r="4" fill="#0A84FF">
+</circle>
+<path d="m228 130 7 5-7 5" stroke="#45A5FF">
+</path>
+</svg>
+</div>
+<div class="product-preview">
+<div class="product-mini-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers lucide-layers-3" aria-hidden="true">
+<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z">
+</path>
+<path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12">
+</path>
+<path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17">
+</path>
+</svg>
+</div>
+<div>
+<span>TWÓJ WŁASNY PRODUKT</span>
+<strong>Wiedza. Wartość. Sprzedaż.</strong>
+</div>
+<span class="mini-check">
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true">
+<path d="M20 6 9 17l-5-5">
+</path>
+</svg>
+</span>
+<div class="mini-product-lines">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</div>
+<div class="mini-product-bottom">
+<span>Od pomysłu do działania</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
+<path d="M7 7h10v10">
+</path>
+<path d="M7 17 17 7">
+</path>
+</svg>
+</div>
+</div>
+<div class="sales-chip">
+<span class="sales-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users" aria-hidden="true">
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2">
+</path>
+<path d="M16 3.128a4 4 0 0 1 0 7.744">
+</path>
+<path d="M22 21v-2a4 4 0 0 0-3-3.87">
+</path>
+<circle cx="9" cy="7" r="4">
+</circle>
+</svg>
+</span>
+<div>
+<strong>{{ section.settings.sales_value | escape }}<span>{{ section.settings.sales_suffix | escape }}</span>
+</strong>
+<small>sprzedanych produktów</small>
+</div>
+</div>
+<div class="visual-cursor">
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0A84FF" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mouse-pointer-2" aria-hidden="true">
+<path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z">
+</path>
+</svg>
+<span>Twój następny krok</span>
+</div>
+<div class="visual-caption">
+<span>CONTENT</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-right" aria-hidden="true">
+<path d="m7 7 10 10">
+</path>
+<path d="M17 7v10H7">
+</path>
+</svg>
+<span>UWAGA</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-right" aria-hidden="true">
+<path d="m7 7 10 10">
+</path>
+<path d="M17 7v10H7">
+</path>
+</svg>
+<span>SPRZEDAŻ</span>
+</div>
+</div>
+</div>
+<div class="container hero-bottom">
+<p>{{ section.settings.bottom_one | escape }} <span>{{ section.settings.bottom_two | escape }}</span>
+</p>
+<a href="#wyniki" aria-label="Przewiń do wyników">
+<span>ZOBACZ, CO JEST DALEJ</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down" aria-hidden="true">
+<path d="M12 5v14">
+</path>
+<path d="m19 12-7 7-7-7">
+</path>
+</svg>
+</a>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "NICO — Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_one",
+      "label": "Temat 1",
+      "default": "CONTENT"
+    },
+    {
+      "type": "text",
+      "id": "badge_two",
+      "label": "Temat 2",
+      "default": "SPRZEDAŻ"
+    },
+    {
+      "type": "text",
+      "id": "badge_three",
+      "label": "Temat 3",
+      "default": "BIZNES ONLINE"
+    },
+    {
+      "type": "text",
+      "id": "heading_one",
+      "label": "Nagłówek — wiersz 1",
+      "default": "Zbuduj swój"
+    },
+    {
+      "type": "text",
+      "id": "heading_two",
+      "label": "Nagłówek — wyróżnienie",
+      "default": "pierwszy biznes"
+    },
+    {
+      "type": "text",
+      "id": "heading_three",
+      "label": "Nagłówek — wiersz 3",
+      "default": "w internecie"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Opis",
+      "default": "Naucz się tworzyć content, przyciągać uwagę i zamieniać ją w sprzedaż. Od pierwszego pomysłu do pierwszych klientów — z konkretnym kierunkiem."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Główny przycisk",
+      "default": "Znajdź swoją ścieżkę"
+    },
+    {
+      "type": "url",
+      "id": "primary_url",
+      "label": "Link głównego przycisku"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Drugi przycisk",
+      "default": "Poznaj moje wyniki"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Link drugiego przycisku"
+    },
+    {
+      "type": "paragraph",
+      "content": "Podawaj wyłącznie własne, prawdziwe wyniki. Liczby poniżej pochodzą z pierwotnego projektu."
+    },
+    {
+      "type": "text",
+      "id": "views_value",
+      "label": "Liczba wyświetleń",
+      "default": "70M"
+    },
+    {
+      "type": "text",
+      "id": "views_suffix",
+      "label": "Symbol po liczbie wyświetleń",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "views_label",
+      "label": "Opis wyświetleń",
+      "default": "wyświetleń"
+    },
+    {
+      "type": "text",
+      "id": "sales_value",
+      "label": "Liczba sprzedanych produktów",
+      "default": "1000"
+    },
+    {
+      "type": "text",
+      "id": "sales_suffix",
+      "label": "Symbol po liczbie sprzedaży",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "sales_label",
+      "label": "Opis sprzedaży",
+      "default": "sprzedanych produktów cyfrowych"
+    },
+    {
+      "type": "text",
+      "id": "visual_label",
+      "label": "Opis ilustracji dla czytnika",
+      "default": "Od contentu przez uwagę do własnego produktu."
+    },
+    {
+      "type": "text",
+      "id": "bottom_one",
+      "label": "Podpis dolny",
+      "default": "Wiedza z praktyki."
+    },
+    {
+      "type": "text",
+      "id": "bottom_two",
+      "label": "Dalsza część podpisu",
+      "default": "Przestrzeń na Twój rozwój."
+    }
+  ],
+  "presets": [
+    {
+      "name": "NICO — Hero"
+    }
+  ]
+}
+{% endschema %}

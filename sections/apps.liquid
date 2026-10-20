@@ -1,0 +1,9 @@
+<section class="section"><div class="container">{% for block in section.blocks %}{% render block %}{% endfor %}</div></section>
+{% schema %}
+{
+  "name": "Aplikacje",
+  "settings": [],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Aplikacje" }]
+}
+{% endschema %}

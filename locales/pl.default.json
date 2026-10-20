@@ -1,0 +1,12 @@
+{
+  "general": {
+    "accessibility": { "skip_to_content": "Przejdź do treści", "close": "Zamknij", "loading": "Wczytywanie" },
+    "search": { "search": "Szukaj", "placeholder": "Wpisz nazwę produktu" }
+  },
+  "products": {
+    "product": { "add_to_cart": "Dodaj do koszyka", "sold_out": "Wyprzedane", "unavailable": "Niedostępne", "quantity": "Liczba sztuk" }
+  },
+  "sections": {
+    "cart": { "title": "Twój koszyk", "checkout": "Przejdź do płatności", "empty": "Twój koszyk jest pusty", "update": "Zaktualizuj koszyk" }
+  }
+}

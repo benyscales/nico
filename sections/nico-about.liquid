@@ -1,0 +1,114 @@
+<section id="o-mnie" class="section about-section">
+<div class="container about-grid">
+<div class="about-portrait is-visible">{% if section.settings.image != blank %}
+{% assign portrait_alt = section.settings.image_alt | default: section.settings.image.alt %}
+{{ section.settings.image | image_url: width: 1200 | image_tag: class: 'about-image', loading: 'lazy', widths: '320, 480, 720, 960, 1200', sizes: '(min-width: 768px) 45vw, 100vw', alt: portrait_alt }}
+{% else %}<div class="portrait-grid">
+</div>
+<span class="portrait-corner corner-tl">
+</span>
+<span class="portrait-corner corner-tr">
+</span>
+<span class="portrait-corner corner-bl">
+</span>
+<span class="portrait-corner corner-br">
+</span>
+<div class="portrait-monogram">n<span>.</span>
+</div>
+<div class="portrait-caption">
+<span class="status-dot">
+</span>
+<span>{{ section.settings.portrait_caption | escape }}</span>
+</div>
+<span class="portrait-note">{{ section.settings.portrait_note | escape }}</span>{% endif %}</div>
+<div class="about-copy is-visible">
+<p class="eyebrow">
+<span class="section-number">05 /</span>{{ section.settings.eyebrow | escape }}</p>
+<h2>{{ section.settings.heading | escape }} <span class="blue-text">{{ section.settings.heading_highlight | escape }}</span>
+</h2>{{ section.settings.body }}<blockquote>{{ section.settings.quote | escape }}</blockquote>
+<a href="{{ section.settings.button_url | default: '#coaching' | escape }}" class="text-link">{{ section.settings.button_label | escape }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
+<path d="M7 7h10v10">
+</path>
+<path d="M7 17 17 7">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "NICO — O mnie",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Nadtytuł",
+      "default": "ZA TĄ STRONĄ STOI PRAKTYKA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Nagłówek",
+      "default": "Wiem, jak wiele może zmienić dobrze wykorzystana"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Wyróżniony fragment",
+      "default": "uwaga."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Tekst o autorze",
+      "default": "<p>Zajmuję się contentem i sprzedażą internetową. Wygenerowałem ponad <strong>70 milionów wyświetleń</strong> na różnych platformach i sprzedałem ponad <strong>1000 produktów cyfrowych.</strong></p><p>Dziś chcę wykorzystywać to doświadczenie, aby pomagać innym przechodzić od pomysłu do konkretnego działania — tworzyć lepszy content, rozwijać własne produkty i uczyć się sprzedaży.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Cytat",
+      "default": "Nie chodzi o szukanie magicznej metody. Chodzi o zrozumienie procesu, testowanie pomysłów i konsekwentne działanie."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Podpis linku",
+      "default": "Porozmawiajmy o Twoim pomyśle"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Adres linku"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Własne zdjęcie autora"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Opis zdjęcia dla czytnika"
+    },
+    {
+      "type": "text",
+      "id": "portrait_caption",
+      "label": "Podpis grafiki zastępczej",
+      "default": "TU ZACZYNA SIĘ TWOJA HISTORIA"
+    },
+    {
+      "type": "text",
+      "id": "portrait_note",
+      "label": "Informacja o grafice",
+      "default": "Miejsce na zdjęcie autora"
+    }
+  ],
+  "presets": [
+    {
+      "name": "NICO — O mnie"
+    }
+  ]
+}
+{% endschema %}

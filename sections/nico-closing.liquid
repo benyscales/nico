@@ -1,0 +1,91 @@
+{%- liquid
+  assign consultation_url = settings.booking_url
+  if consultation_url == blank
+    assign consultation_url = settings.contact_page.url
+  endif
+  if consultation_url == blank
+    assign consultation_url = routes.root_url | append: 'pages/kontakt'
+  endif
+-%}
+<section class="final-cta" aria-labelledby="ClosingTitle-{{ section.id }}">
+  <div class="container" data-reveal>
+    <span class="final-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span>
+    <p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 id="ClosingTitle-{{ section.id }}">{{ section.settings.title_first | escape }}<br>{{ section.settings.title_second | escape }} <span class="blue-text">{{ section.settings.title_accent | escape }}</span></h2>
+    <p>{{ section.settings.description | escape }}</p>
+    <div class="final-actions">
+      <a href="{{ section.settings.products_url | default: '#produkty' | escape }}" class="button button-primary">{{ section.settings.products_label | escape }} <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+      <a class="button button-outline" href="{{ consultation_url | escape }}">{{ section.settings.consultation_label | escape }} <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    </div>
+    <span class="final-note">{{ section.settings.note | escape }}</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NICO — Ostatni krok",
+  "tag": "div",
+  "class": "nico-closing-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Nadtytuł",
+      "default": "OD POMYSŁU DO DZIAŁANIA"
+    },
+    {
+      "type": "text",
+      "id": "title_first",
+      "label": "Nagłówek — pierwszy wiersz",
+      "default": "Twój pierwszy krok"
+    },
+    {
+      "type": "text",
+      "id": "title_second",
+      "label": "Nagłówek — drugi wiersz",
+      "default": "może zacząć się"
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Nagłówek — niebieski tekst",
+      "default": "tutaj."
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Opis",
+      "default": "Wybierz swoją ścieżkę i zacznij budować coś własnego."
+    },
+    {
+      "type": "text",
+      "id": "products_label",
+      "label": "Przycisk oferty",
+      "default": "Zobacz produkty"
+    },
+    {
+      "type": "url",
+      "id": "products_url",
+      "label": "Link do oferty",
+      "info": "Domyślnie prowadzi do sekcji produktów na tej stronie."
+    },
+    {
+      "type": "text",
+      "id": "consultation_label",
+      "label": "Przycisk konsultacji",
+      "default": "Umów darmową konsultację"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Podpis",
+      "default": "Jeden pomysł. Twój pierwszy krok. Nowe możliwości."
+    }
+  ],
+  "presets": [
+    {
+      "name": "NICO — Ostatni krok"
+    }
+  ]
+}
+{% endschema %}

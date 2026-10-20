@@ -1,0 +1,116 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'ProductForm-' | append: section.id
+  assign current_allocation = current_variant.selling_plan_allocations | first
+  assign displayed_price = current_variant.price
+  assign displayed_compare_at = current_variant.compare_at_price
+  if product.requires_selling_plan and current_allocation
+    assign displayed_price = current_allocation.price
+    assign displayed_compare_at = current_allocation.compare_at_price
+  endif
+  assign image_alt = product.featured_image.alt | default: product.title
+%}
+<section class="commerce-page commerce-product-page" data-product-root aria-labelledby="ProductTitle-{{ section.id }}">
+  <div class="container">
+    <a href="{{ routes.all_products_collection_url }}" class="commerce-back-link">← Wszystkie produkty</a>
+    <div class="commerce-product-layout">
+      <div class="commerce-product-media">
+        {% if product.featured_image %}
+          {{ product.featured_image | image_url: width: 1400 | image_tag: widths: '480,720,960,1200,1400', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: image_alt }}
+        {% else %}
+          <div class="commerce-image-placeholder commerce-product-placeholder" aria-hidden="true">{% render 'icon', name: 'layers-3' %}</div>
+        {% endif %}
+        {% if product.images.size > 1 %}
+          <div class="commerce-product-gallery">
+            {% for image in product.images offset: 1 %}
+              {% assign gallery_alt = image.alt | default: product.title %}
+              {{ image | image_url: width: 1000 | image_tag: widths: '320,640,1000', sizes: '(min-width: 990px) 25vw, 50vw', loading: 'lazy', alt: gallery_alt }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="commerce-product-info">
+        <div class="eyebrow">{{ section.settings.eyebrow | escape }}</div>
+        <h1 id="ProductTitle-{{ section.id }}">{{ product.title | escape }}</h1>
+        <div class="commerce-detail-price" aria-live="polite" aria-atomic="true">
+          <strong data-product-price>{{ displayed_price | money_with_currency }}</strong>
+          <s data-product-compare-price{% unless displayed_compare_at > displayed_price %} hidden{% endunless %}><span class="sr-only">Cena regularna: </span>{{ displayed_compare_at | money_with_currency }}</s>
+        </div>
+        {% if product.selling_plan_groups.size == 0 %}<p class="commerce-price-note">Płatność jednorazowa</p>{% endif %}
+        <p class="commerce-product-status" data-product-status aria-live="polite">{% if current_variant.available %}Dostępny{% else %}Wyprzedane{% endif %}</p>
+        {% if product.description != blank %}<div class="commerce-richtext">{{ product.description }}</div>{% endif %}
+        {% unless product.has_only_default_variant %}
+          <noscript>
+            <form action="{{ product.url }}" method="get" class="commerce-product-form commerce-variant-reload">
+              <div class="commerce-field">
+                <label for="VariantReload-{{ section.id }}">Wybierz i wczytaj wariant</label>
+                <select id="VariantReload-{{ section.id }}" name="variant">
+                  {% for variant in product.variants %}
+                    <option value="{{ variant.id }}"{% if variant.id == current_variant.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title | escape }} — {{ variant.price | money_with_currency | strip_html | escape }}{% unless variant.available %} — Wyprzedane{% endunless %}</option>
+                  {% endfor %}
+                </select>
+                <p class="commerce-field-help">Po zmianie wariantu wczytaj jego cenę i dostępność, a następnie dodaj produkt do koszyka.</p>
+              </div>
+              <button type="submit" class="button button-outline"{% unless product.available %} disabled{% endunless %}>Wczytaj wariant</button>
+            </form>
+          </noscript>
+        {% endunless %}
+        {% form 'product', product, id: product_form_id, class: 'commerce-product-form', data-product-form: '' %}
+          {% if form.errors %}<div class="commerce-form-errors" role="alert">{{ form.errors | default_errors }}</div>{% endif %}
+          <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+          <div class="commerce-field"{% if product.has_only_default_variant %} hidden{% endif %}>
+            <label for="Variant-{{ section.id }}">Wariant</label>
+            <select id="Variant-{{ section.id }}" name="id" data-variant-select>
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}"{% if variant.id == current_variant.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title | escape }} — {{ variant.price | money_with_currency }}{% unless variant.available %} — Wyprzedane{% endunless %}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% if product.selling_plan_groups.size > 0 %}
+            <div class="commerce-field">
+              <label for="SellingPlan-{{ section.id }}">Sposób zakupu</label>
+              <select id="SellingPlan-{{ section.id }}" name="selling_plan" data-selling-plan-select{% if product.requires_selling_plan %} required{% endif %}>
+                {% unless product.requires_selling_plan %}<option value="">Zakup jednorazowy</option>{% endunless %}
+                {% for group in product.selling_plan_groups %}
+                  <optgroup label="{{ group.name | escape }}">
+                    {% for selling_plan in group.selling_plans %}
+                      <option value="{{ selling_plan.id }}"{% if product.requires_selling_plan and selling_plan.id == current_allocation.selling_plan.id %} selected{% endif %}>{{ selling_plan.name | escape }}</option>
+                    {% endfor %}
+                  </optgroup>
+                {% endfor %}
+              </select>
+              <p class="commerce-field-help">Warunki wybranego planu sprawdzisz przed potwierdzeniem zakupu.</p>
+            </div>
+          {% endif %}
+          <div class="commerce-field commerce-quantity-field">
+            <label for="Quantity-{{ section.id }}">Ilość</label>
+            <input id="Quantity-{{ section.id }}" type="number" name="quantity" value="{{ current_variant.quantity_rule.min | default: 1 }}" min="{{ current_variant.quantity_rule.min | default: 1 }}" step="{{ current_variant.quantity_rule.increment | default: 1 }}"{% if current_variant.quantity_rule.max %} max="{{ current_variant.quantity_rule.max }}"{% endif %} inputmode="numeric">
+          </div>
+          <button type="submit" name="add" class="button button-primary commerce-add-button" data-add-to-cart data-available-label="Dodaj do koszyka" data-sold-out-label="Wyprzedane" data-unavailable-label="Niedostępne"{% unless current_variant.available %} disabled{% endunless %}>{% if current_variant.available %}Dodaj do koszyka{% else %}Wyprzedane{% endif %}</button>
+        {% endform %}
+        <a href="{{ routes.cart_url }}" class="commerce-text-link">Przejdź do koszyka {% render 'icon', name: 'arrow-up-right' %}</a>
+        {% if section.settings.delivery_note != blank %}<p class="commerce-delivery-note">{{ section.settings.delivery_note | escape }}</p>{% endif %}
+        <div class="commerce-app-blocks">
+          {% for block in section.blocks %}{% render block %}{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% capture variant_data %}[
+    {% for variant in product.variants %}
+      {"id":{{ variant.id | json }},"available":{{ variant.available | json }},"priceFormatted":{{ variant.price | money_with_currency | strip_html | json }},"compareAtFormatted":{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money_with_currency | strip_html | json }}{% else %}""{% endif %},"minimum":{{ variant.quantity_rule.min | default: 1 | json }},"increment":{{ variant.quantity_rule.increment | default: 1 | json }},"maximum":{{ variant.quantity_rule.max | json }},"sellingPlanIds":[{% for allocation in variant.selling_plan_allocations %}{{ allocation.selling_plan.id | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],"sellingPlans":[{% for allocation in variant.selling_plan_allocations %}{"id":{{ allocation.selling_plan.id | json }},"priceFormatted":{{ allocation.price | money_with_currency | strip_html | json }},"compareAtFormatted":{% if allocation.compare_at_price > allocation.price %}{{ allocation.compare_at_price | money_with_currency | strip_html | json }}{% else %}""{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]{% endcapture %}
+  <script type="application/json" data-variant-data>{{ variant_data | replace: '<', '\u003c' }}</script>
+</section>
+
+{% schema %}
+{
+  "name": "Produkt",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Mały nagłówek", "default": "TWOJA KOLEJNA ŚCIEŻKA" },
+    { "type": "textarea", "id": "delivery_note", "label": "Informacja o dostawie", "default": "Sprawdź opis produktu i warunki dostępu przed zakupem. Dodanie do koszyka nie oznacza opłacenia zamówienia." }
+  ],
+  "blocks": [{ "type": "@app" }]
+}
+{% endschema %}

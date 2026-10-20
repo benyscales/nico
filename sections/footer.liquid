@@ -1,0 +1,67 @@
+{%- liquid
+  assign brand_name = settings.brand_name | default: 'NICO'
+  assign brand_short = settings.brand_short | default: 'n.'
+  assign contact_url = settings.contact_page.url
+  if contact_url == blank
+    assign contact_url = routes.root_url | append: '/pages/kontakt' | replace: '//', '/'
+  endif
+-%}
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="{{ routes.root_url }}" aria-label="{{ brand_name | escape }} — strona główna">
+          {% if settings.logo != blank %}
+            <img class="brand-image" src="{{ settings.logo | image_url: width: 320 }}" width="{{ settings.logo.width }}" height="{{ settings.logo.height }}" alt="{{ brand_name | escape }}" loading="lazy">
+          {% else %}
+            <span class="brand-symbol" aria-hidden="true">{{ brand_short | escape }}</span>
+            <span class="brand-wordmark">{{ brand_name | downcase | escape }}<span class="brand-period">.</span></span>
+          {% endif %}
+        </a>
+        <p>{{ section.settings.description | escape | newline_to_br }}</p>
+      </div>
+      <div class="footer-column">
+        <h3>Twoja ścieżka</h3>
+        <a href="{{ routes.root_url }}#produkty">Community</a>
+        <a href="{{ routes.root_url }}#produkty">Kurs</a>
+        <a href="{{ routes.root_url }}#produkty">Full Access</a>
+        <a href="{{ routes.root_url }}#coaching">Coaching 1:1</a>
+      </div>
+      <div class="footer-column">
+        <h3>Poznajmy się</h3>
+        <a href="{{ routes.root_url }}#o-mnie">O mnie</a>
+        <a href="{{ routes.root_url }}#jak-pomagam">Jak pomagam</a>
+        <a href="{{ routes.root_url }}#faq">FAQ</a>
+        <a href="{{ contact_url | escape }}">Kontakt {% render 'icon', name: 'arrow-up-right' %}</a>
+      </div>
+      <div class="footer-column">
+        <h3>Ważne informacje</h3>
+        {% for policy in shop.policies %}
+          {% if policy.body != blank %}
+            <a href="{{ policy.url | escape }}">{{ policy.title | escape }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if section.settings.menu != blank %}
+          {% for link in section.settings.menu.links %}
+            <a href="{{ link.url | escape }}">{{ link.title | escape }}</a>
+          {% endfor %}
+        {% endif %}
+        <a href="{{ routes.cart_url }}">Koszyk</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. Twórz po swojemu.</span>
+      <span>Z pomysłu w coś własnego. <span class="footer-blue-dot" aria-hidden="true"></span></span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Stopka",
+  "settings": [
+    { "type": "textarea", "id": "description", "label": "Opis marki", "default": "Content, który przyciąga.\nWiedza, która prowadzi do działania." },
+    { "type": "link_list", "id": "menu", "label": "Dodatkowe odnośniki", "info": "Opublikowane zasady sklepu Shopify pojawiają się automatycznie." }
+  ]
+}
+{% endschema %}

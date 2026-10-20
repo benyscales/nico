@@ -1,0 +1,173 @@
+{%- liquid
+  assign consultation_url = settings.booking_url
+  if consultation_url == blank
+    assign consultation_url = settings.contact_page.url
+  endif
+  if consultation_url == blank
+    assign consultation_url = routes.root_url | append: 'pages/kontakt'
+  endif
+-%}
+<section id="coaching" class="section coaching-section">
+<div class="container">
+<div class="coaching-panel is-visible">
+<div class="coaching-copy">
+<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
+<h2>{{ section.settings.heading_one | escape }}<br>{{ section.settings.heading_two | escape }}<br>
+<span class="blue-text">{{ section.settings.heading_three | escape }}</span>
+</h2>
+<p>{{ section.settings.description | escape }}</p>
+<a href="{{ consultation_url | escape }}" class="button button-primary">{{ section.settings.button_label | escape }} <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
+<path d="M7 7h10v10">
+</path>
+<path d="M7 17 17 7">
+</path>
+</svg>
+</a>
+<p class="coaching-free">
+<span class="status-dot">
+</span> {{ section.settings.footnote | escape }}</p>
+</div>
+<div class="coaching-side">
+<div class="coaching-visual">
+<div class="coaching-circle circle-outer">
+</div>
+<div class="coaching-circle circle-middle">
+</div>
+<div class="coaching-circle circle-inner">
+</div>
+<span class="coaching-compass">
+<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-compass" aria-hidden="true">
+<circle cx="12" cy="12" r="10">
+</circle>
+<path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z">
+</path>
+</svg>
+</span>
+<div class="coaching-visual-label">
+<span>
+</span> {{ section.settings.visual_caption | escape }}</div>
+<span class="coaching-cross cross-one">+</span>
+<span class="coaching-cross cross-two">+</span>
+</div>
+<ul class="coaching-areas">{% for block in section.blocks %}<li {{ block.shopify_attributes }}>
+<span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>{{ block.settings.title | escape }}<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true">
+<path d="m9 18 6-6-6-6">
+</path>
+</svg>
+</li>{% endfor %}</ul>
+</div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "NICO — Coaching",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Nadtytuł",
+      "default": "INDYWIDUALNA WSPÓŁPRACA"
+    },
+    {
+      "type": "text",
+      "id": "heading_one",
+      "label": "Nagłówek — wiersz 1",
+      "default": "Twój biznes."
+    },
+    {
+      "type": "text",
+      "id": "heading_two",
+      "label": "Nagłówek — wiersz 2",
+      "default": "Twój kierunek."
+    },
+    {
+      "type": "text",
+      "id": "heading_three",
+      "label": "Nagłówek — wyróżnienie",
+      "default": "Konkretne działanie."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Opis",
+      "default": "Jeśli chcesz podejść do swojego biznesu bardziej indywidualnie, możemy wspólnie przeanalizować Twoją sytuację, pomysły i kolejne kroki."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Przycisk",
+      "default": "Umów darmową konsultację"
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "label": "Informacja pod przyciskiem",
+      "default": "Pierwsza konsultacja jest darmowa."
+    },
+    {
+      "type": "text",
+      "id": "visual_caption",
+      "label": "Podpis ilustracji",
+      "default": "DOPASOWANE DO CIEBIE"
+    },
+    {
+      "type": "paragraph",
+      "content": "Link konsultacji ustawisz w Ustawieniach motywu: kalendarz lub strona kontaktowa. Bez kalendarza przycisk prowadzi do kontaktu."
+    }
+  ],
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "area",
+      "name": "Obszar współpracy",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Obszar",
+          "default": "Strategia contentu"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "NICO — Coaching",
+      "blocks": [
+        {
+          "type": "area",
+          "settings": {
+            "title": "Pomysł na pierwszy produkt lub usługę"
+          }
+        },
+        {
+          "type": "area",
+          "settings": {
+            "title": "Strategia contentu"
+          }
+        },
+        {
+          "type": "area",
+          "settings": {
+            "title": "Budowanie marki osobistej"
+          }
+        },
+        {
+          "type": "area",
+          "settings": {
+            "title": "Pozyskiwanie i zamykanie klientów"
+          }
+        },
+        {
+          "type": "area",
+          "settings": {
+            "title": "Analiza problemów i plan kolejnych działań"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

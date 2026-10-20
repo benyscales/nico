@@ -1,0 +1,19 @@
+<section class="legal-page not-found-page">
+  <div class="container page-container">
+    <p class="eyebrow">404 / TEJ STRONY NIE MA</p>
+    <h1>Znajdź swój kierunek.</h1>
+    <p>Ta strona mogła zmienić adres lub nie jest już dostępna. Wróć na stronę główną albo wyszukaj produkt.</p>
+    <a class="button button-primary" href="{{ routes.root_url }}">Wróć na stronę główną {% render 'icon', name: 'arrow-right' %}</a>
+    <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <div class="form-field">
+        <label for="Search-{{ section.id }}">Szukaj w sklepie</label>
+        <input id="Search-{{ section.id }}" name="q" type="search" placeholder="Nazwa produktu" required>
+      </div>
+      <button class="button button-outline" type="submit">Szukaj {% render 'icon', name: 'search' %}</button>
+    </form>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Strona 404", "settings": [] }
+{% endschema %}

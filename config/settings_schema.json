@@ -1,0 +1,73 @@
+[
+  {
+    "name": "Marka",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Nazwa marki",
+        "default": "NICO"
+      },
+      {
+        "type": "text",
+        "id": "brand_short",
+        "label": "Monogram",
+        "default": "n."
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo (opcjonalne)"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Ikona przeglądarki"
+      },
+      {
+        "type": "paragraph",
+        "content": "Motyw używa czcionki systemowej. Na iPhonie i Macu będzie to San Francisco."
+      }
+    ]
+  },
+  {
+    "name": "Kolory",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Tło strony",
+        "default": "#050505"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Akcent",
+        "default": "#0a84ff"
+      },
+      {
+        "type": "color",
+        "id": "light_accent_color",
+        "label": "Jasny akcent",
+        "default": "#45a5ff"
+      }
+    ]
+  },
+  {
+    "name": "Kontakt i konsultacje",
+    "settings": [
+      {
+        "type": "page",
+        "id": "contact_page",
+        "label": "Strona kontaktowa",
+        "info": "Utwórz stronę Kontakt z szablonem contact i wybierz ją tutaj. Domyślny adres: /pages/kontakt."
+      },
+      {
+        "type": "url",
+        "id": "booking_url",
+        "label": "Kalendarz konsultacji",
+        "info": "Opcjonalny adres prawdziwego kalendarza. Bez niego przyciski prowadzą do strony kontaktowej."
+      }
+    ]
+  }
+]

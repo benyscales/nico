@@ -1,0 +1,29 @@
+<section class="commerce-page commerce-search-page" aria-labelledby="SearchTitle-{{ section.id }}">
+  <div class="container">
+    <div class="commerce-page-heading"><div class="eyebrow">ODKRYJ OFERTĘ</div><h1 id="SearchTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h1></div>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="commerce-search-form"><label for="SearchQuery-{{ section.id }}">Czego szukasz?</label><div class="commerce-search-fields"><input type="search" id="SearchQuery-{{ section.id }}" name="q" value="{{ search.terms | escape }}" placeholder="Nazwa produktu lub temat" required><input type="hidden" name="type" value="product"><input type="hidden" name="options[prefix]" value="last"><button type="submit" class="button button-primary">Szukaj {% render 'icon', name: 'arrow-up-right' %}</button></div></form>
+    {% if search.performed %}
+      {% paginate search.results by section.settings.results_per_page %}
+        <p class="commerce-results-count" role="status">Liczba wyników dla „{{ search.terms | escape }}”: {{ search.results_count }}</p>
+        {% if search.results_count > 0 %}
+          <div class="commerce-product-grid">
+            {% for result in search.results %}
+              {% if result.object_type == 'product' %}
+                {% render 'product-tile', card_product: result, heading_tag: 'h2' %}
+              {% else %}
+                <article class="commerce-product-tile commerce-search-result"><div class="commerce-product-tile-body"><h2><a href="{{ result.url }}">{{ result.title | escape }}</a></h2><p>{{ result.content | default: result.excerpt_or_content | strip_html | truncate: 150 | escape }}</p><a href="{{ result.url }}" class="commerce-text-link">Czytaj więcej {% render 'icon', name: 'arrow-up-right' %}</a></div></article>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}<div class="commerce-empty-state"><h2>Nie znaleźliśmy pasujących produktów.</h2><p>Spróbuj użyć innej nazwy lub sprawdź pełną ofertę.</p><a href="{{ routes.all_products_collection_url }}" class="button button-outline">Zobacz produkty</a></div>{% endif %}
+        {% if paginate.pages > 1 %}
+          <nav class="commerce-pagination" aria-label="Strony wyników wyszukiwania"><ul>{% if paginate.previous %}<li><a href="{{ paginate.previous.url }}" aria-label="Poprzednia strona">←</a></li>{% endif %}{% for part in paginate.parts %}<li>{% if part.is_link %}<a href="{{ part.url }}" aria-label="Strona {{ part.title | escape }}">{{ part.title }}</a>{% else %}<span{% if part.title == paginate.current_page %} aria-current="page"{% endif %}>{{ part.title }}</span>{% endif %}</li>{% endfor %}{% if paginate.next %}<li><a href="{{ paginate.next.url }}" aria-label="Następna strona">→</a></li>{% endif %}</ul></nav>
+        {% endif %}
+      {% endpaginate %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Wyszukiwanie", "settings": [{ "type": "text", "id": "heading", "label": "Nagłówek", "default": "Znajdź coś dla siebie." }, { "type": "range", "id": "results_per_page", "label": "Wyników na stronie", "min": 4, "max": 48, "step": 4, "default": 12 }] }
+{% endschema %}

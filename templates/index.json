@@ -1,0 +1,304 @@
+{
+  "sections": {
+    "hero": {
+      "type": "nico-hero",
+      "settings": {}
+    },
+    "results": {
+      "type": "nico-results",
+      "settings": {},
+      "blocks": {
+        "block1": {
+          "type": "result",
+          "settings": {
+            "visual": "views",
+            "label": "ZASIĘG",
+            "value": "70M",
+            "suffix": "+",
+            "heading": "Wyświetleń na platformach",
+            "description": "Doświadczenie w tworzeniu treści, które docierają do odbiorców.",
+            "flow_start": "Content",
+            "flow_end": "Sprzedaż"
+          }
+        },
+        "block2": {
+          "type": "result",
+          "settings": {
+            "visual": "sales",
+            "label": "SPRZEDAŻ",
+            "value": "1000",
+            "suffix": "+",
+            "heading": "Sprzedanych produktów cyfrowych",
+            "description": "Praktyczne doświadczenie w sprzedaży produktów w internecie.",
+            "flow_start": "Content",
+            "flow_end": "Sprzedaż"
+          }
+        },
+        "block3": {
+          "type": "result",
+          "settings": {
+            "visual": "process",
+            "label": "PROCES",
+            "value": "70M",
+            "suffix": "+",
+            "heading": "Od uwagi do klienta",
+            "description": "Łączenie tworzenia treści z monetyzacją i rozwojem biznesu.",
+            "flow_start": "Content",
+            "flow_end": "Sprzedaż"
+          }
+        }
+      },
+      "block_order": [
+        "block1",
+        "block2",
+        "block3"
+      ]
+    },
+    "audience": {
+      "type": "nico-audience",
+      "settings": {},
+      "blocks": {
+        "block1": {
+          "type": "audience",
+          "settings": {
+            "icon": "lightbulb",
+            "label": "OD POMYSŁU",
+            "heading": "Chcę zacząć od zera",
+            "description": "Znajdź pomysł na produkt lub usługę i poznaj podstawy budowania biznesu online."
+          }
+        },
+        "block2": {
+          "type": "audience",
+          "settings": {
+            "icon": "video",
+            "label": "DO UWAGI",
+            "heading": "Chcę tworzyć lepszy content",
+            "description": "Naucz się przyciągać uwagę odbiorców i budować rozpoznawalność."
+          }
+        },
+        "block3": {
+          "type": "audience",
+          "settings": {
+            "icon": "mouse-pointer-2",
+            "label": "DO PIERWSZYCH KLIENTÓW",
+            "heading": "Chcę zacząć sprzedawać",
+            "description": "Poznaj podstawy oferty, komunikacji z klientem i procesu sprzedaży."
+          }
+        },
+        "block4": {
+          "type": "audience",
+          "settings": {
+            "icon": "trending-up",
+            "label": "I DALEJ",
+            "heading": "Chcę rozwijać swój biznes",
+            "description": "Uporządkuj działania, popraw content i szukaj sposobów na zwiększenie sprzedaży."
+          }
+        }
+      },
+      "block_order": [
+        "block1",
+        "block2",
+        "block3",
+        "block4"
+      ]
+    },
+    "products": {
+      "type": "nico-products",
+      "settings": {},
+      "blocks": {
+        "block1": {
+          "type": "offer",
+          "settings": {
+            "display_name": "Community",
+            "category": "WSPÓLNY KIERUNEK",
+            "icon": "users",
+            "description": "Miejsce dla osób, które chcą rozwijać swój biznes online, wymieniać się doświadczeniami i pracować nad swoimi pomysłami.",
+            "benefits": "Dostęp do społeczności\nMożliwość wymiany doświadczeń\nPrzestrzeń do rozwijania własnych projektów\nKontakt z osobami o podobnych celach",
+            "cta": "Dołącz do społeczności"
+          }
+        },
+        "block2": {
+          "type": "offer",
+          "settings": {
+            "display_name": "Kurs",
+            "category": "WIEDZA W PRAKTYCE",
+            "icon": "play",
+            "description": "Praktyczna wiedza, która pomoże Ci lepiej zrozumieć content, sprzedaż internetową i budowanie biznesu.",
+            "benefits": "Materiały edukacyjne\nWiedza o tworzeniu contentu\nPodstawy sprzedaży produktów cyfrowych\nPraktyczne wskazówki do wykorzystania we własnym projekcie",
+            "cta": "Kup kurs"
+          }
+        },
+        "block3": {
+          "type": "offer",
+          "settings": {
+            "display_name": "Full Access",
+            "category": "PEŁNY EKOSYSTEM",
+            "icon": "layers-3",
+            "description": "Połącz wiedzę z możliwością rozwijania się w społeczności.",
+            "benefits": "Wszystkie elementy kursu\nDostęp do społeczności\nJedno miejsce do nauki i rozwijania własnego projektu",
+            "cta": "Wybieram pakiet",
+            "featured": true
+          }
+        }
+      },
+      "block_order": [
+        "block1",
+        "block2",
+        "block3"
+      ]
+    },
+    "coaching": {
+      "type": "nico-coaching",
+      "settings": {},
+      "blocks": {
+        "block1": {
+          "type": "area",
+          "settings": {
+            "title": "Pomysł na pierwszy produkt lub usługę"
+          }
+        },
+        "block2": {
+          "type": "area",
+          "settings": {
+            "title": "Strategia contentu"
+          }
+        },
+        "block3": {
+          "type": "area",
+          "settings": {
+            "title": "Budowanie marki osobistej"
+          }
+        },
+        "block4": {
+          "type": "area",
+          "settings": {
+            "title": "Pozyskiwanie i zamykanie klientów"
+          }
+        },
+        "block5": {
+          "type": "area",
+          "settings": {
+            "title": "Analiza problemów i plan kolejnych działań"
+          }
+        }
+      },
+      "block_order": [
+        "block1",
+        "block2",
+        "block3",
+        "block4",
+        "block5"
+      ]
+    },
+    "process": {
+      "type": "nico-process",
+      "settings": {},
+      "blocks": {
+        "block1": {
+          "type": "step",
+          "settings": {
+            "icon": "target",
+            "heading": "Poznajemy Twój cel",
+            "description": "Ustalamy, co chcesz osiągnąć i na jakim etapie jesteś."
+          }
+        },
+        "block2": {
+          "type": "step",
+          "settings": {
+            "icon": "route",
+            "heading": "Tworzymy plan",
+            "description": "Wybieramy priorytety dopasowane do Twojej sytuacji."
+          }
+        },
+        "block3": {
+          "type": "step",
+          "settings": {
+            "icon": "rocket",
+            "heading": "Wdrażasz i rozwijasz",
+            "description": "Pracujesz nad kolejnymi krokami i wyciągasz wnioski z działania."
+          }
+        }
+      },
+      "block_order": [
+        "block1",
+        "block2",
+        "block3"
+      ]
+    },
+    "about": {
+      "type": "nico-about",
+      "settings": {}
+    },
+    "faq": {
+      "type": "nico-faq",
+      "settings": {},
+      "blocks": {
+        "block1": {
+          "type": "question",
+          "settings": {
+            "question": "Dla kogo jest ta oferta?",
+            "answer": "<p>Dla osób, które chcą rozpocząć lub rozwijać biznes internetowy i nauczyć się tworzenia contentu oraz sprzedaży. Niezależnie od tego, czy masz już pomysł, czy dopiero szukasz kierunku.</p>"
+          }
+        },
+        "block2": {
+          "type": "question",
+          "settings": {
+            "question": "Czy muszę mieć już własny biznes?",
+            "answer": "<p>Nie. Możesz rozpocząć od pomysłu i stopniowo rozwijać swój projekt. Wybierz ścieżkę dopasowaną do tego, na jakim etapie jesteś.</p>"
+          }
+        },
+        "block3": {
+          "type": "question",
+          "settings": {
+            "question": "Czym różni się kurs od społeczności?",
+            "answer": "<p>Kurs zapewnia materiały edukacyjne, a społeczność daje przestrzeń do wymiany doświadczeń i rozwijania projektów. Pakiet Full Access łączy oba rozwiązania.</p>"
+          }
+        },
+        "block4": {
+          "type": "question",
+          "settings": {
+            "question": "Czy mogę najpierw porozmawiać?",
+            "answer": "<p>Tak. Pierwsza konsultacja coachingowa jest darmowa i pozwala omówić Twoją sytuację oraz oczekiwania. Dostępność zapisów sprawdzisz po kliknięciu przycisku konsultacji.</p>"
+          }
+        },
+        "block5": {
+          "type": "question",
+          "settings": {
+            "question": "Czy osiągnę określony wynik finansowy?",
+            "answer": "<p>Wyniki zależą od wielu czynników, w tym Twoich działań, oferty i sytuacji rynkowej. Nie gwarantuję określonych zarobków. Dostajesz wiedzę i kierunek, a nie obietnicę wyniku.</p>"
+          }
+        },
+        "block6": {
+          "type": "question",
+          "settings": {
+            "question": "Jak otrzymam dostęp do produktu?",
+            "answer": "<p>Sposób i czas uzyskania dostępu poznasz przed dokonaniem rzeczywistego zakupu. Instrukcje zostaną przekazane po potwierdzeniu płatności. Jeśli sprzedaż produktu nie została jeszcze uruchomiona, jego przycisk wyświetli tę informację.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block1",
+        "block2",
+        "block3",
+        "block4",
+        "block5",
+        "block6"
+      ]
+    },
+    "closing": {
+      "type": "nico-closing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "results",
+    "audience",
+    "products",
+    "coaching",
+    "process",
+    "about",
+    "faq",
+    "closing"
+  ]
+}

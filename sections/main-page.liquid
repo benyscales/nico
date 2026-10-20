@@ -1,0 +1,11 @@
+<section class="legal-page">
+  <div class="container page-container">
+    <a class="eyebrow" href="{{ routes.root_url }}">← {{ settings.brand_name | default: 'NICO' | escape }} / Strona główna</a>
+    <h1>{{ page.title | escape }}</h1>
+    <div class="rte page-content">{{ page.content }}</div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Treść strony", "settings": [] }
+{% endschema %}

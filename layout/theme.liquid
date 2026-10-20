@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code | escape }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.background_color | default: '#050505' | escape }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <title>{{ page_title | escape }}{% if current_tags %} — {{ current_tags | join: ', ' | escape }}{% endif %}{% if current_page != 1 %} — {{ current_page }}{% endif %}{% unless page_title contains shop.name %} — {{ shop.name | escape }}{% endunless %}</title>
+    {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+    {% if settings.favicon != blank %}<link rel="icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">{% endif %}
+    {% render 'social-meta' %}
+    {{ content_for_header }}
+    {{ 'nico.css' | asset_url | stylesheet_tag }}
+    <style>
+      :root {
+        --bg: {{ settings.background_color | default: '#050505' }};
+        --blue: {{ settings.accent_color | default: '#0a84ff' }};
+        --light-blue: {{ settings.light_accent_color | default: '#45a5ff' }};
+      }
+    </style>
+    <script src="{{ 'nico.js' | asset_url }}" defer></script>
+  </head>
+  <body class="template-{{ request.page_type | handle }}">
+    <a class="skip-link" href="#MainContent">Przejdź do treści</a>
+    {% sections 'header-group' %}
+    <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>
+    {% sections 'footer-group' %}
+  </body>
+</html>

@@ -1,0 +1,63 @@
+{%- liquid
+  assign brand_name = settings.brand_name | default: 'NICO'
+  assign brand_short = settings.brand_short | default: 'n.'
+  assign mobile_menu_id = 'MobileNav-' | append: section.id
+  assign products_url = routes.root_url | append: '#produkty'
+-%}
+<header class="site-header">
+  <div class="container nav-inner">
+    <a class="brand" href="{{ routes.root_url }}" aria-label="{{ brand_name | escape }} — strona główna">
+      {% if settings.logo != blank %}
+        <img class="brand-image" src="{{ settings.logo | image_url: width: 320 }}" width="{{ settings.logo.width }}" height="{{ settings.logo.height }}" alt="{{ brand_name | escape }}" loading="eager">
+      {% else %}
+        <span class="brand-symbol" aria-hidden="true">{{ brand_short | escape }}</span>
+        <span class="brand-wordmark">{{ brand_name | downcase | escape }}<span class="brand-period">.</span></span>
+      {% endif %}
+    </a>
+    <nav class="desktop-nav" aria-label="Nawigacja główna">
+      {% if section.settings.menu != blank %}
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url | escape }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="{{ products_url }}">Produkty</a>
+        <a href="{{ routes.root_url }}#o-mnie">O mnie</a>
+        <a href="{{ routes.root_url }}#jak-pomagam">Jak pomagam</a>
+        <a href="{{ routes.root_url }}#faq">FAQ</a>
+      {% endif %}
+    </nav>
+    <div class="header-actions">
+      <a class="cart-link icon-button" href="{{ routes.cart_url }}" aria-label="Koszyk — liczba produktów: {{ cart.item_count }}">
+        {% render 'icon', name: 'shopping-bag' %}
+        <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+      <a class="button button-small button-white nav-cta" href="{{ products_url }}">Zacznij tutaj {% render 'icon', name: 'arrow-up-right' %}</a>
+      <button type="button" class="mobile-toggle icon-button" data-menu-toggle data-label-open="Zamknij menu" data-label-closed="Otwórz menu" aria-label="Otwórz menu" aria-expanded="false" aria-controls="{{ mobile_menu_id }}">
+        {% render 'icon', name: 'menu' %}
+      </button>
+    </div>
+  </div>
+  <nav id="{{ mobile_menu_id }}" class="mobile-nav" data-mobile-menu aria-label="Nawigacja mobilna" hidden>
+    {% if section.settings.menu != blank %}
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url | escape }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }} {% render 'icon', name: 'arrow-up-right' %}</a>
+      {% endfor %}
+    {% else %}
+      <a href="{{ products_url }}">Produkty {% render 'icon', name: 'arrow-up-right' %}</a>
+      <a href="{{ routes.root_url }}#o-mnie">O mnie {% render 'icon', name: 'arrow-up-right' %}</a>
+      <a href="{{ routes.root_url }}#jak-pomagam">Jak pomagam {% render 'icon', name: 'arrow-up-right' %}</a>
+      <a href="{{ routes.root_url }}#faq">FAQ {% render 'icon', name: 'arrow-up-right' %}</a>
+    {% endif %}
+    <a class="mobile-start" href="{{ products_url }}">Zacznij tutaj {% render 'icon', name: 'arrow-up-right' %}</a>
+    <a href="{{ routes.cart_url }}">Koszyk ({{ cart.item_count }}) {% render 'icon', name: 'shopping-bag' %}</a>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Nagłówek",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu nawigacji", "info": "Bez wybranego menu wyświetlane są odnośniki do sekcji strony głównej." }
+  ]
+}
+{% endschema %}

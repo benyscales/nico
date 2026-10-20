@@ -1,0 +1,122 @@
+<section class="section process-section"><div class="container">
+  <div class="section-heading centered" data-reveal><p class="eyebrow"><span class="section-number">{{ section.settings.number | escape }} /</span>{{ section.settings.eyebrow | escape }}</p><h2>{{ section.settings.heading | escape }}<br class="mobile-only"> {{ section.settings.heading_second | escape }}</h2></div>
+  <div class="process-grid" data-reveal>
+    {% for block in section.blocks %}
+      <article class="process-step" {{ block.shopify_attributes }}>
+        <div class="step-top"><span class="step-number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="step-connector"></span>
+          {% case block.settings.icon %}
+            {% when 'route' %}<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-route" aria-hidden="true"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg>
+            {% when 'rocket' %}<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket" aria-hidden="true"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"></path><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"></path></svg>
+            {% else %}<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          {% endcase %}
+        </div>
+        <h3>{{ block.settings.heading | escape }}</h3><p>{{ block.settings.description | escape }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</div></section>
+{% schema %}
+{
+  "name": "NICO — Proces",
+  "tag": "div",
+  "class": "nico-process-wrapper",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Numer sekcji",
+      "default": "04"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Nadtytuł",
+      "default": "PROSTY PROCES. KONKRETNY KIERUNEK."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Pierwsza część nagłówka",
+      "default": "Od pomysłu"
+    },
+    {
+      "type": "text",
+      "id": "heading_second",
+      "label": "Druga część nagłówka",
+      "default": "do konkretnego działania."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Krok",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ikona",
+          "options": [
+            {
+              "value": "target",
+              "label": "Cel"
+            },
+            {
+              "value": "route",
+              "label": "Plan"
+            },
+            {
+              "value": "rocket",
+              "label": "Rozwój"
+            }
+          ],
+          "default": "target"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tytuł kroku",
+          "default": "Poznajemy Twój cel"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Opis kroku",
+          "default": "Ustalamy, co chcesz osiągnąć i na jakim etapie jesteś."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "NICO — Proces",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "icon": "target",
+            "heading": "Poznajemy Twój cel",
+            "description": "Ustalamy, co chcesz osiągnąć i na jakim etapie jesteś."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "route",
+            "heading": "Tworzymy plan",
+            "description": "Wybieramy priorytety dopasowane do Twojej sytuacji."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "rocket",
+            "heading": "Wdrażasz i rozwijasz",
+            "description": "Pracujesz nad kolejnymi krokami i wyciągasz wnioski z działania."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

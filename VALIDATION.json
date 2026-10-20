@@ -1,0 +1,18 @@
+{
+  "theme": "NICO Shopify",
+  "theme_check": {
+    "tool": "@shopify/theme-check-node@3.30.1",
+    "checks": 85,
+    "errors": 0,
+    "warnings": 0
+  },
+  "javascript_syntax": "passed",
+  "local_browser_simulation": {
+    "viewports": 44,
+    "interaction_groups": 5,
+    "axe_violations": 0,
+    "javascript_errors": 0
+  },
+  "live_shopify_import_and_transactions_tested": false,
+  "archive_sha256": "8fc089a43631fb2b47bc12bfc72e19af551e279d27f925b2f19e50ba3ebdb826"
+}

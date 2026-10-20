@@ -1,0 +1,21 @@
+<section class="commerce-page commerce-collection-page" aria-labelledby="CollectionTitle-{{ section.id }}">
+  <div class="container">
+    <div class="commerce-page-heading"><div class="eyebrow">WYBIERZ SWÓJ KIERUNEK</div><h1 id="CollectionTitle-{{ section.id }}">{{ collection.title | escape }}</h1>{% if collection.description != blank %}<div class="commerce-richtext">{{ collection.description }}</div>{% endif %}</div>
+    {% paginate collection.products by section.settings.products_per_page %}
+      {% if collection.products_count > 0 %}
+        <div class="commerce-list-toolbar">
+          <p>Liczba produktów: {{ collection.products_count }}</p>
+          <form method="get" action="{{ collection.url }}" class="commerce-sort-form"><label for="CollectionSort-{{ section.id }}">Sortowanie</label><select id="CollectionSort-{{ section.id }}" name="sort_by">{% assign current_sort = collection.sort_by | default: collection.default_sort_by %}{% for option in collection.sort_options %}<option value="{{ option.value | escape }}"{% if option.value == current_sort %} selected{% endif %}>{{ option.name | escape }}</option>{% endfor %}</select><button type="submit" class="button button-outline">Sortuj</button></form>
+        </div>
+        <div class="commerce-product-grid">{% for product in collection.products %}{% render 'product-tile', card_product: product, heading_tag: 'h2' %}{% endfor %}</div>
+      {% else %}<div class="commerce-empty-state"><h2>Ta kolekcja nie zawiera jeszcze produktów.</h2><p>Zajrzyj tutaj ponownie lub sprawdź pozostałe produkty.</p><a href="{{ routes.all_products_collection_url }}" class="button button-outline">Wszystkie produkty</a></div>{% endif %}
+      {% if paginate.pages > 1 %}
+        <nav class="commerce-pagination" aria-label="Strony kolekcji"><ul>{% if paginate.previous %}<li><a href="{{ paginate.previous.url }}" aria-label="Poprzednia strona">←</a></li>{% endif %}{% for part in paginate.parts %}<li>{% if part.is_link %}<a href="{{ part.url }}" aria-label="Strona {{ part.title | escape }}">{{ part.title }}</a>{% else %}<span{% if part.title == paginate.current_page %} aria-current="page"{% endif %}>{{ part.title }}</span>{% endif %}</li>{% endfor %}{% if paginate.next %}<li><a href="{{ paginate.next.url }}" aria-label="Następna strona">→</a></li>{% endif %}</ul></nav>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Kolekcja", "settings": [{ "type": "range", "id": "products_per_page", "label": "Produktów na stronie", "min": 4, "max": 48, "step": 4, "default": 12 }] }
+{% endschema %}
